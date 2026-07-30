@@ -1,0 +1,16 @@
+# 首层目录 -> collection; 未命中走 default; 新增 collection 只改本文件
+default: ako_taoli_general_arch
+routes:
+  "(root)": ako_taoli_general_arch
+  AKO_inbox: ako_taoli_general_arch
+  AKO_knowledge_base: ako_taoli_general_arch
+  Inbox: ako_taoli_general_arch
+
+# 文件级规则(优先于目录路由): 超大资料单独指定专库与粗分块
+# 2026-07-17: ALC 标准整本 1.65MB(约占 vault 73%), 450/100 细分会产生 ~4700 块,
+#             改入规范专库 ako_taoli_codes_arch, 1200/200 粗分块约 1500 块
+file_rules:
+  - match: "AKO_knowledge_base/ALC板材安装构法标准·同解说（2013年版）.md"
+    collection: ako_taoli_codes_arch
+    chunk_size: 1200
+    overlap: 200

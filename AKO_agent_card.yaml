@@ -1,0 +1,137 @@
+agent_id: AKO_knowledge_agent
+name: 知识库管理Agent
+version: 1.0.0
+owner: AKO_studio
+status: production
+capabilities:
+- id: cap_doc_ingest
+  name: 文档摄取与向量化
+  description: 自动解析Markdown/PDF文档，分块向量化存入知识库
+  input:
+  - name: documents
+    type: list
+    required: true
+    description: 待摄入文档路径列表
+  output:
+  - name: ingest_result
+    type: json
+    description: 摄入统计（成功数/失败数/向量数）
+  priority: P0
+- id: cap_hybrid_search
+  name: 混合检索
+  description: 关键词+语义向量混合检索，支持标签过滤
+  input:
+  - name: query
+    type: string
+    required: true
+    description: 查询文本
+  - name: filters
+    type: json
+    required: false
+    description: 标签过滤条件
+  output:
+  - name: results
+    type: json
+    description: 排序检索结果
+  priority: P0
+- id: cap_nightly_maintain
+  name: 知识库夜间维护
+  description: 夜间自动去重、补全向量、重建索引
+  input:
+  - name: mode
+    type: string
+    required: false
+    description: 维护模式（full/incremental）
+  output:
+  - name: maintain_report
+    type: json
+    description: 维护报告
+  priority: P1
+architecture:
+  language: Python
+  framework: FastAPI
+  entry_point: app.py
+  config_files:
+  - config.yaml
+  - config.json
+  - secrets.env
+  dependencies:
+  - requirements.txt
+  - AKO_agent_sdk_v2.py
+  git_repo: ''
+runtime:
+  endpoint: http://localhost:5001
+  heartbeat_interval: 60
+  last_heartbeat: ''
+  status: ''
+  pid: 0
+  start_time: ''
+org:
+  department: 技术中心
+  product_line: AKO_knowledge_system
+  reports_to: AKO_hub
+  team: 知识管理组
+dependencies:
+- agent_id: AKO_hub
+  type: reports_to
+  required: true
+  description: 任务分发上级
+- agent_id: AKO_tag_manager
+  type: calls
+  required: true
+  description: 标签体系校验
+metadata:
+  created: '2026-07-19'
+  updated: '2026-07-29'
+  tags:
+  - 技术/AI-Agent
+  - 技术/软件-开发
+  - 资料/规范
+  documents:
+    whitepaper:
+      filename: AKO_knowledge_agent_whitepaper_v1.0.md
+      path: ./AKO_knowledge_agent_whitepaper_v1.0.md
+      version: 1.0.0
+      status: production
+      last_verified: ''
+health:
+  enabled: true
+  probe_interval: 60
+  business_probes:
+  - name: 核心功能自检
+    enabled: true
+    timeout: 30
+  - name: 输入输出通道
+    enabled: true
+    timeout: 10
+  - name: 依赖服务可用
+    enabled: true
+    timeout: 5
+  system_probes:
+  - name: CPU使用率
+    enabled: true
+    threshold: 80
+  - name: 内存使用率
+    enabled: true
+    threshold: 80
+  - name: 磁盘空间
+    enabled: true
+    threshold: 80
+  - name: 网络连通
+    enabled: true
+    timeout: 5
+author: AKO_studio
+tags:
+- knowledge
+- document
+created_date: '2026-07-30'
+description: Ako Knowledge Agent for AKO fleet automation.
+interfaces:
+  input: config.yaml / CLI parameters
+  output: Result files / logs
+health_probe:
+  endpoint: /health
+  expected_response: ok
+registry:
+  registry_agent: AKO_registry_agent
+  registered: false

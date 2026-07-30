@@ -1,0 +1,17 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = git@gitee.com:yangguiqing1970/ako_knowledge.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	vscode-merge-base = origin/master
+	merge = refs/heads/master
+[remote "github"]
+	url = git@github.com:yangguiqing2026/AKO_knowledge.git
+	fetch = +refs/heads/*:refs/remotes/github/*

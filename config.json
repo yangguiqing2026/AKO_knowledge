@@ -1,0 +1,58 @@
+{
+  "_comment": "知识库配置文件 - 支持多电脑环境",
+  "_comment2": "修改 active_profile 来切换不同电脑的配置",
+  "_comment3": "注意: db_path 使用 '.' 表示根目录,与脚本同级",
+  "_comment4": "hub_integration 配置用于数据同步写入 Hub 统一库",
+  "_comment5": "2026-07-17 修正 hub 路径: E盘老路径(电脑B) -> 本机 D:/AKO_Hub, 原值见 config.json.bak_20260717",
+  "active_profile": "computer_a",
+  "profiles": {
+    "computer_a": {
+      "name": "电脑 A",
+      "db_path": ".",
+      "pdf_folder": "D:\\AG_docs\\pdfs",
+      "word_folder": "D:\\AG_docs\\word",
+      "ppt_folder": "D:\\AG_docs\\ppt",
+      "img_folder": "D:\\AG_docs\\images",
+      "collection_name": "ako_photos",
+      "hub_collection": "ako_taoli_general_arch"
+    },
+    "computer_b": {
+      "name": "电脑 B",
+      "db_path": ".",
+      "pdf_folder": "E:\\AG_docs\\pdfs",
+      "word_folder": "E:\\AG_docs\\word",
+      "ppt_folder": "E:\\AG_docs\\ppt",
+      "img_folder": "E:\\AG_docs\\images",
+      "collection_name": "ako_photos",
+      "hub_collection": "ako_taoli_general_arch"
+    }
+  },
+  "common_settings": {
+    "chunk_size": 450,
+    "overlap": 100,
+    "batch_size": 16,
+    "embedding_model": "bge-m3",
+    "ocr_languages": "chi_sim+eng",
+    "chroma_mode": "local",
+    "chroma_server_host": "192.168.1.100",
+    "chroma_server_port": 8000
+  },
+  "query_settings": {
+    "confidence_threshold": 0.3,
+    "similarity_threshold": 0.55
+  },
+  "llm_settings": {
+    "provider": "deepseek",
+    "api_base": "https://api.deepseek.com",
+    "api_key": "",
+    "model": "deepseek-chat"
+  },
+  "inbox_folder": "Inbox",
+  "hub_integration": {
+    "enabled": false,
+    "hub_chroma_root": "D:/AKO_Hub/chroma_db",
+    "hub_meta_db": "D:/AKO_Hub/hub_meta.db",
+    "embedding_model": "bge-m3",
+    "dual_write": true
+  }
+}

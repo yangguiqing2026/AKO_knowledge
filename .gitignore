@@ -1,0 +1,9 @@
+﻿# 私有数据库文件
+chroma.sqlite3
+chroma.sqlite3-journal
+*.sqlite3-journal
+
+# Python
+__pycache__/
+*.pyc
+*.pyo

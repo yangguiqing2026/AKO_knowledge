@@ -1,0 +1,36 @@
+{
+  "_comment": "知识库配置文件示例 - 复制此文件为 config.json 并修改",
+  "_comment2": "修改 active_profile 来切换不同电脑的配置",
+  "_comment3": "注意: db_path 使用 '.' 表示根目录,与脚本同级",
+  
+  "active_profile": "computer_a",
+  
+  "profiles": {
+    "computer_a": {
+      "name": "电脑 A",
+      "db_path": ".",
+      "pdf_folder": "D:\\AG_docs\\pdfs",
+      "word_folder": "D:\\AG_docs\\word",
+      "ppt_folder": "D:\\AG_docs\\ppt",
+      "img_folder": "D:\\AG_docs\\images",
+      "collection_name": "ako_photos"
+    },
+    "computer_b": {
+      "name": "电脑 B",
+      "db_path": ".",
+      "pdf_folder": "E:\\AG_docs\\pdfs",
+      "word_folder": "E:\\AG_docs\\word",
+      "ppt_folder": "E:\\AG_docs\\ppt",
+      "img_folder": "E:\\AG_docs\\images",
+      "collection_name": "ako_photos"
+    }
+  },
+  
+  "common_settings": {
+    "chunk_size": 450,
+    "overlap": 100,
+    "batch_size": 16,
+    "embedding_model": "bge-m3",
+    "ocr_languages": "chi_sim+eng"
+  }
+}
